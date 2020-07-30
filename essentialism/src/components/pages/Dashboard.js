@@ -70,12 +70,12 @@ const Dashboard = () => {
             </p>
           </Container>
         </Jumbotron>
-        <div>
+        <div className="container">
           <h1>Current Goals</h1>
           <Goals />
         </div>
       </div>
-      <div>
+      <div className="container">
         <h1>Add New Goals</h1>
         <GoalForm />
       </div>

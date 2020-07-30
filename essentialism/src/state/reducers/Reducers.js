@@ -13,7 +13,7 @@ const initialState = {
   isSaving: false,
   updated: false,
 };
-const reducer = (state = initialState, action) => {
+export const reducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
     case INITIAL_FETCH:
@@ -52,4 +52,3 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 };
-export default reducer;

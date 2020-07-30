@@ -30,7 +30,7 @@ const GoalForm = (props) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <form
         onSubmit={handleSubmit}
         noValidate
@@ -50,6 +50,7 @@ const GoalForm = (props) => {
             />
           </InputGroup>
         </div>
+        <br />
         <div className="formInput">
           <InputGroup>
             <InputGroupAddon addonType="prepend">

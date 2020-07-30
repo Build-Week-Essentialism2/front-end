@@ -10,7 +10,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import * as serviceWorker from './serviceWorker';
 
 import rootReducer from "./state/reducers";
-import reducer from "./state/reducers/Reducers";
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
