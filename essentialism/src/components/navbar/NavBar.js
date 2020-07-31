@@ -35,12 +35,13 @@ const NavAppBar = (props) => {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <HomeIcon />
           </IconButton>
-          <Link to="/" style={{textDecoration: "none", color: "white"}}>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          </Link>
+          {/* <Link to="/" style={{textDecoration: "none", color: "white"}}> */}
+          <IconButton href="https://kepler-8d3f95.netlify.app/" edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <LineStyleIcon />
           </IconButton>
-          </Link>
-          </Link>
+          {/* </Link> */}
+          
           <Typography variant="h6" className={classes.title}>
             Essentialism
           </Typography>

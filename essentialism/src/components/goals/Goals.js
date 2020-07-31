@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchGoals, removeGoal } from "../../state/actions";
+import { fetchGoals, removeGoal, editGoal } from "../../state/actions";
 import Goal from "./Goal";
-
+import EditGoal from "./EditGoal";
 const Goals = (props) => {
   console.log(props);
   useEffect(() => {
     console.log("fetching");
-    props.fetchGoals();
+    fetchGoals();
   }, []);
 
   if (props.updated) {
@@ -22,9 +22,14 @@ const Goals = (props) => {
   return (
     <>
       <div>
-        {" "}
         {props.goals.map((item) => (
-          <Goal id={item.id} {...item} handleDelete={handleDelete} />
+          <div key={item.id}>
+            {item.editing ? (
+              <EditGoal item={item} key={item.id} />
+            ) : (
+              <Goal id={item.id} {...item} handleDelete={handleDelete} />
+            )}
+          </div>
         ))}
       </div>
     </>
@@ -38,6 +43,7 @@ const mapStateToProps = (state) => {
     isFetching: state.isFetching,
     error: state.error,
     updated: state.updated,
+    editing: state.editing,
   };
 };
 

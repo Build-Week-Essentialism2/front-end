@@ -4,13 +4,17 @@ import {
   FETCH_FAIL,
   ADD_SUCCESS,
   REMOVE_SUCCESS,
+  UPDATE_GOAL_SUCCESS,
+  START_EDITING,
+  CANCEL_EDITING,
+  UPDATE_GOAL,
 } from "../../state/actions";
 
 const initialState = {
   goals: [
     {
-      title: "get better at this stuff",
-      date: "",
+      title: "Eat a cheeseburger",
+      date: "August 01 2020",
       id: Date.now(),
     },
   ],
@@ -18,6 +22,7 @@ const initialState = {
   error: "",
   isSaving: false,
   updated: false,
+  editing: false,
 
   user: {
     firstName: "",
@@ -25,18 +30,6 @@ const initialState = {
     username: "",
     password: "",
   },
-
-  goals: [
-    {
-      title: "get better at this stuff",
-      date: "10/01/2020",
-      id: Date.now(),
-    },
-  ],
-  isFetching: false,
-  error: "",
-  isSaving: false,
-  updated: false,
 
   Items: [
     {
@@ -122,6 +115,29 @@ export function essentialismReducer(state = initialState, action) {
     //     isFetching: false,
     //     error: '',
     // }
+
+    //create
+
+    case "ADD_GOAL":
+      return {
+        ...state,
+        goals: [
+          ...state.goals,
+          {
+            title: action.payload.title,
+            date: action.payload.date,
+            id: Date.now(),
+          },
+        ],
+      };
+
+    case ADD_SUCCESS:
+      return {
+        ...state,
+        updated: true,
+      };
+
+    //read
     case INITIAL_FETCH:
       return {
         ...state,
@@ -144,11 +160,48 @@ export function essentialismReducer(state = initialState, action) {
         isFetching: false,
         updated: false,
       };
-    case ADD_SUCCESS:
+
+    //update
+    case START_EDITING: {
       return {
         ...state,
+        editing: true,
+      };
+    }
+    case CANCEL_EDITING: {
+      return {
+        ...state,
+        editing: false,
+      };
+    }
+
+    case "UPDATE_GOAL":
+      return state.goals.map((post) =>
+        post.id === action.id ? { ...post, editing: !post.editing } : post
+      );
+    // {
+    //   ...state.goals.map((post) =>
+    //     state.goals.id === action.id
+    //       ? { ...state.goals, editing: !post.editing }
+    //       : post
+    //   ),
+    // };
+    case UPDATE_GOAL: {
+      return {
+        ...state,
+        editing: false,
         updated: true,
       };
+    }
+    case UPDATE_GOAL_SUCCESS: {
+      return {
+        ...state,
+        ...action.goals,
+        updated: false,
+      };
+    }
+
+    //delete
     case REMOVE_SUCCESS:
       return {
         ...state,
@@ -168,5 +221,16 @@ export function essentialismReducer(state = initialState, action) {
           return item;
         }),
       };
+
+    case "REMOVE_GOAL":
+      return {
+        ...state,
+        goals: [...state.goals.filter((item) => item.id !== action.payload)],
+      };
+
+    default:
+      return state;
   }
 }
+
+//

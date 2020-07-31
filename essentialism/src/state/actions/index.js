@@ -35,18 +35,18 @@ export const createUser = (newUser) => {
       });
   };
 };
-return (dispatch) => {
-  dispatch({ type: "FETCH_USER_START" });
-  axios
-    .get("http://localhost:3333/")
-    .then((res) => {
-      console.log("Axios Reponse", res);
-      dispatch({ type: "FETCH_USER_SUCCESS", payload: res.data });
-    })
-    .catch((err) => {
-      console.log("Axios error", err);
-    });
-};
+// return (dispatch) => {
+//   dispatch({ type: "FETCH_USER_START" });
+//   axios
+//     .get("http://localhost:3333/")
+//     .then((res) => {
+//       console.log("Axios Reponse", res);
+//       dispatch({ type: "FETCH_USER_SUCCESS", payload: res.data });
+//     })
+//     .catch((err) => {
+//       console.log("Axios error", err);
+//     });
+// };
 
 // Actions without the API
 
@@ -70,19 +70,41 @@ export const logoutNavName = () => {
   };
 };
 
-//THIS IS WHERE THE API SENDS A REQUEST AND RETURN THE INFORMATION
-export const INITIAL_FETCH = "INITIAL_FETCH";
-export const FETCH_SUCCESS = "FETCH_SUCCESS";
-export const FETCH_FAIL = "FETCH_FAIL";
-//FORM THAT ADDS
+//CRUD operation
+
+//Create
 export const ADD_START = "ADD_START";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAILURE = "ADD_FAILURE";
-//WHEN DELETING
+
+//Read
+export const INITIAL_FETCH = "INITIAL_FETCH";
+export const FETCH_SUCCESS = "FETCH_SUCCESS";
+export const FETCH_FAIL = "FETCH_FAIL";
+
+//Update
+export const START_EDITING = "START_EDITING";
+export const CANCEL_EDITING = " CANCEL_EDITING";
+
+export const UPDATE_GOAL = " UPDATE-GOAL";
+export const UPDATE_GOAL_SUCCESS = " UPDATE_GOAL_SUCCESS";
+export const UPDATE_GOAL_ERROR = "UPDATE_GOAL_ERROR";
+
+export const COMPLETE_GOAL = "COMPLETE_GOAL";
+
+//Delete
 export const REMOVE_ITEM = "REMOVE_ITEM";
 export const REMOVE_SUCCESS = "REMOVE_SUCCESS";
 export const REMOVE_FAILURE = "REMOVE_FAILURE";
 
+//Create
+export const addGoal = (title, date) => {
+  return (dispatch) => {
+    dispatch({ type: "ADD_GOAL", payload: { title: title, date: date } });
+  };
+};
+
+//Read
 export const fetchGoals = () => (dispatch) => {
   dispatch({ type: INITIAL_FETCH });
   axios
@@ -91,18 +113,17 @@ export const fetchGoals = () => (dispatch) => {
     .catch((err) => dispatch({ type: FETCH_FAIL, payload: err.response }));
 };
 
-export const addGoal = (title, date) => (dispatch) => {
-  dispatch({ type: ADD_START });
-  axios
-    .post("http://localhost:3333", { title, date })
-    .then((res) => dispatch({ type: ADD_SUCCESS }))
-    .catch((err) => dispatch({ type: ADD_FAILURE }));
+//Update
+
+export const editGoal = (goals) => {
+  return (dispatch) => {
+    dispatch({ type: "UPDATE_GOAL", payload: goals });
+  };
 };
 
-export const removeGoal = (id) => (dispatch) => {
-  dispatch({ type: REMOVE_ITEM });
-  axios
-    .delete(`http://localhost:3333`)
-    .then((res) => dispatch({ type: REMOVE_SUCCESS }))
-    .catch((err) => dispatch({ type: REMOVE_FAILURE }));
+//Delete
+export const removeGoal = (id) => {
+  return (dispatch) => {
+    dispatch({ type: "REMOVE_GOAL", payload: id });
+  };
 };
