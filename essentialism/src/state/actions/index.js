@@ -60,7 +60,7 @@ export const REMOVE_FAILURE = "REMOVE_FAILURE";
 export const fetchGoals = () => (dispatch) => {
   dispatch({ type: INITIAL_FETCH });
   axios
-    .get("http://localhost:5000")
+    .get("http://localhost:3333")
     .then((res) => dispatch({ type: FETCH_SUCCESS, payload: res.data }))
     .catch((err) => dispatch({ type: FETCH_FAIL, payload: err.response }));
 };
@@ -68,7 +68,7 @@ export const fetchGoals = () => (dispatch) => {
 export const addGoal = (title, date) => (dispatch) => {
   dispatch({ type: ADD_START });
   axios
-    .post("http://localhost:5000", { title, date })
+    .post("http://localhost:3333", { title, date })
     .then((res) => dispatch({ type: ADD_SUCCESS }))
     .catch((err) => dispatch({ type: ADD_FAILURE }));
 };
@@ -76,7 +76,7 @@ export const addGoal = (title, date) => (dispatch) => {
 export const removeGoal = (id) => (dispatch) => {
   dispatch({ type: REMOVE_ITEM });
   axios
-    .delete(`http://localhost:5000`)
+    .delete(`http://localhost:3333`)
     .then((res) => dispatch({ type: REMOVE_SUCCESS }))
     .catch((err) => dispatch({ type: REMOVE_FAILURE }));
 };

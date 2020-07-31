@@ -11,10 +11,10 @@ const Goal = (props) => {
       <div className="container">
         <Card body className="text-center">
           <CardTitle>
-            <h2>{props.title}</h2>
+            <h2>Title: {props.title}</h2>
           </CardTitle>
           <CardText>
-            <p>Age: {props.date}</p>
+            <p>Date: {props.date}</p>
           </CardText>
           <Button onClick={onDelete}>Delete</Button>
         </Card>

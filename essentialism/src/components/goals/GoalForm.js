@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addGoal } from "../actions";
+import { addGoal } from "../../state/actions";
 import {
   InputGroup,
   InputGroupText,
@@ -9,7 +9,7 @@ import {
   Button,
 } from "reactstrap";
 const GoalForm = (props) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState();
   const [date, setDate] = useState("");
 
   const handleChangesTitle = (e) => {

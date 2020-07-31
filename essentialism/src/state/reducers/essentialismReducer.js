@@ -13,13 +13,18 @@ const initialState = {
     username: "",
     password: "",
   },
+
   goals: [
     {
-      title: "",
-      date: "",
-      id: 0,
+      title: "get better at this stuff",
+      date: "10/01/2020",
+      id: Date.now(),
     },
   ],
+  isFetching: false,
+  error: "",
+  isSaving: false,
+  updated: false,
 
   Items: [
     {
@@ -29,6 +34,7 @@ const initialState = {
       complete: false,
     },
   ],
+
   values: [
     {
       value: "Weight Loss",
@@ -79,8 +85,6 @@ const initialState = {
       isSelected: false,
     },
   ],
-  isFetching: false,
-  error: "",
 };
 
 export function essentialismReducer(state = initialState, action) {
