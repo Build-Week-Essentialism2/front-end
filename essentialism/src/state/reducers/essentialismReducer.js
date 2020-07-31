@@ -4,9 +4,21 @@ import {
   FETCH_FAIL,
   ADD_SUCCESS,
   REMOVE_SUCCESS,
-} from "../actions";
+} from "../../state/actions";
 
 const initialState = {
+  goals: [
+    {
+      title: "get better at this stuff",
+      date: "",
+      id: Date.now(),
+    },
+  ],
+  isFetching: false,
+  error: "",
+  isSaving: false,
+  updated: false,
+
   user: {
     firstName: "",
     lastName: "",
@@ -156,21 +168,5 @@ export function essentialismReducer(state = initialState, action) {
           return item;
         }),
       };
-
-    default:
-      return state;
   }
 }
-
-// {
-//     ...state,
-//     values: [state.values.map(item => {
-//         if (action.payload === item.id) {
-//           return {
-//             ...item,
-//             isSelected: !item.isSelected,
-//           };
-//         }
-//         return item;
-//     })
-//     ]}

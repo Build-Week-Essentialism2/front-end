@@ -4,7 +4,8 @@ import { Route, Switch } from "react-router-dom";
 // import PrivateRoute from './utils/PrivateRoute';
 import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
-import Dashboard from "./components/pages/Dashboard";
+// import Dashboard from "./components/pages/Dashboard";
+import DashboardPage from "./components/pages/DashboardPage";
 import NavBar from "./components/navbar/NavBar";
 import DashboardValues from "./components/pages/DashboardValues";
 import CreateUserPage from "./components/pages/CreateUserPage";
@@ -47,8 +48,9 @@ function App() {
           </Route>
           {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
           <Route exact path="/dashboard">
-            <Dashboard />
+            <DashboardPage />
           </Route>
+          
           <Route exact path="/helppage">
             <HelpPage />
           </Route>
@@ -62,3 +64,4 @@ function App() {
 }
 
 export default App;
+

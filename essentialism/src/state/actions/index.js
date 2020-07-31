@@ -35,6 +35,18 @@ export const createUser = (newUser) => {
       });
   };
 };
+return (dispatch) => {
+  dispatch({ type: "FETCH_USER_START" });
+  axios
+    .get("http://localhost:3333/")
+    .then((res) => {
+      console.log("Axios Reponse", res);
+      dispatch({ type: "FETCH_USER_SUCCESS", payload: res.data });
+    })
+    .catch((err) => {
+      console.log("Axios error", err);
+    });
+};
 
 // Actions without the API
 
