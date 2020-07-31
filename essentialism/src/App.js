@@ -11,6 +11,8 @@ import CreateUserPage from "./components/pages/CreateUserPage";
 import WelcomeUserPage from "./components/pages/WelcomeUserPage";
 import InitialAddValuesPage from "./components/pages/InitialAddValuesPage";
 import FeedbackPage from './components/pages/FeedbackPage';
+import FeedbackFormPage from './components/pages/FeedbackFormPage';
+import HelpPage from './components/pages/HelpPage'
 
 function App() {
   return (
@@ -37,9 +39,18 @@ function App() {
           <Route path="/feedback">
             <FeedbackPage />
           </Route>
+          <Route path="/feedback-form">
+            <FeedbackFormPage />
+          </Route>
+          <Route path="/feedback-form">
+            <FeedbackFormPage />
+          </Route>
           {/* <PrivateRoute exact path="/dashboard" component={Dashboard} /> */}
           <Route exact path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route exact path="/helppage">
+            <HelpPage />
           </Route>
           <Route path="/dashboard/values">
             <DashboardValues />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavAppBar() {
+const NavAppBar = (props) => {
   const classes = useStyles();
 
   return (
@@ -43,10 +44,8 @@ export default function NavAppBar() {
           <Typography variant="h6" className={classes.title}>
             Essentialism
           </Typography>
-          <Link to="/login" style={{textDecoration: 'none', color: "white"}}>
-          <Button color="inherit">Login</Button>
-          </Link>
-          <Link to="/dashboard" style={{textDecoration: "none", color: "white"}}>
+          <Link to={props.displayNav} style={{textDecoration: 'none', color: "white"}}>
+          <Button color="inherit">{props.displayName}</Button>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <AccountCircleIcon />
           </IconButton>
@@ -56,3 +55,13 @@ export default function NavAppBar() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  console.log("Values State", state.essentialismReducer.values)
+  return{
+    displayName: state.essentialismReducer.displayName,
+    displayNav: state.essentialismReducer.displayNav,
+  }
+}
+
+export default connect(mapStateToProps)(NavAppBar);

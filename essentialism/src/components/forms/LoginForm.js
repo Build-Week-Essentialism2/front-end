@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
@@ -6,10 +7,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import FormControl from '@material-ui/core/FormControl'
+import FormControl from '@material-ui/core/FormControl';
 // import jwt from 'jsonwebtoken';
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
+import { updateNavName } from '../../state/actions'
 // import axios from 'axios';
 
 
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default function LoginForm() {
+const LoginForm = (props) => {
   const classes = useStyles();
 
   const [formState, setFormState] = useState({
@@ -80,6 +82,7 @@ const validate = e => {
 let history = useHistory();
 
 const submitButton = () => {
+  props.updateNavName(formState.username)
   return history.push('/dashboard')
 }
 
@@ -148,3 +151,11 @@ const submitForm = (e) => {
  );
 }
 
+const mapStateToProps = state => {
+  console.log("Values State", state.essentialismReducer.values)
+  return{
+    // data: state.essentialismReducer.values,
+  }
+}
+
+export default connect(mapStateToProps, {updateNavName})(LoginForm);

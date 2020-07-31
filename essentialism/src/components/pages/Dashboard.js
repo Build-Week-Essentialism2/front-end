@@ -1,21 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import Goals from "../goals/Goals";
-import GoalForm from "../goals/GoalForm";
-import { Jumbotron, Container } from "reactstrap";
-
 // import goalsApi from "../forms/goalsApi";
 // import isOverdue from "../forms/isOverdue";
 // import Header from "../forms/Header";
 // import List from "../forms/List";
-const Dashboard = () => {
+import { Spring } from "react-spring/renderprops";
+import { logoutNavName } from "../../state/actions";
+import { Jumbotron, Button, Container } from "reactstrap";
+import Goals from "../goals/Goals";
+import GoalForm from "../goals/GoalForm";
+
+const Dashboard = (props) => {
   const history = useHistory();
 
   const addValues = () => {
     history.push("/dashboard/values");
   };
   const submit = () => {
+    props.logoutNavName();
     history.push("/");
   };
 
@@ -79,6 +82,7 @@ const Dashboard = () => {
         <h1>Add New Goals</h1>
         <GoalForm />
       </div>
+
       {/* <div className="fluid-container app-container">
         <Header addItem={add} filter={filter} setFilter={setFilter} />
         {!loading && (
@@ -90,11 +94,31 @@ const Dashboard = () => {
           <div className="alert alert-info" role="alert">
             Loading please wait...
           </div>
-        )}
-      </div> */}
-      );
+        )} */}
+      <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+        <Button
+          style={{ color: "white", backgroundColor: "black" }}
+          onClick={submit}
+          variant="outlined"
+        >
+          Log Out
+        </Button>
+        <Button
+          style={{ color: "white", backgroundColor: "black" }}
+          onClick={addValues}
+          variant="outlined"
+        >
+          Change Values
+        </Button>
+        <Button
+          style={{ color: "white", backgroundColor: "black" }}
+          variant="outlined"
+        >
+          Help
+        </Button>
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default connect(null, { logoutNavName })(Dashboard);

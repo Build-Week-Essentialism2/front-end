@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from 'react-redux';
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Card from "@material-ui/core/Card";
@@ -8,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
+import { updateNavName } from '../../state/actions'
 // import axios from 'axios';
 
 const formSchema = yup.object().shape({
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BackerSignupForm(props) {
+const BackerSignupForm = (props) => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -90,6 +92,7 @@ export default function BackerSignupForm(props) {
   let history = useHistory();
 
   const submitButton = () => {
+    props.updateNavName(formState.username)
     return history.push("/welcome");
   };
 
@@ -218,3 +221,6 @@ export default function BackerSignupForm(props) {
     </div>
   );
 }
+
+
+export default connect(null, {updateNavName})(BackerSignupForm);

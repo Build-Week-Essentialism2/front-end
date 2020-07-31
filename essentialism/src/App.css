@@ -163,3 +163,12 @@ body {
   height: 92vh;
 }
 
+.feedbackFormPage {
+  background-image: url("https://images.pexels.com/photos/696680/pexels-photo-696680.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 92vh;
+}
+
