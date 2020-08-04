@@ -45,6 +45,7 @@ const GoalForm = (props) => {
               <InputGroupText>Goal: </InputGroupText>
             </InputGroupAddon>
             <Input
+              
               type="text"
               name="title"
               value={title}
@@ -59,6 +60,7 @@ const GoalForm = (props) => {
               <InputGroupText>Date: </InputGroupText>
             </InputGroupAddon>
             <Input
+            
               type="date"
               name="date"
               value={date}

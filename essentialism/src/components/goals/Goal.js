@@ -1,13 +1,19 @@
 import React from "react";
 import { ListGroup, ListGroupItem, Button } from "reactstrap";
-
+import { useHistory } from "react-router-dom";
 const Goal = (props) => {
   const onDelete = (e) => {
     props.handleDelete(props.id);
   };
+  const history = useHistory();
+  // const onEdit = () => {
+  //   props.handleEdit(props.id);
+  // };
 
-  const onEdit = () => {
-    props.handleEdit(props.id);
+  const onEdit = (id) => {
+    console.log("handleEdit log", id);
+    props.editGoal(id);
+    history.push("/edit-goal");
   };
 
   return (

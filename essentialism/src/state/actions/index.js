@@ -47,6 +47,24 @@ export const createUser = (newUser) => {
 //       console.log("Axios error", err);
 //     });
 // };
+// export const createUser = (newUser) => {
+//     return dispatch => {
+//         axios
+//             .post('http://localhost:3333/',
+//             {
+//                 firstName: newUser.firstName,
+//                 lastName: newUser.lastName,
+//                 email: newUser.email,
+//                 id: Date.now(),
+//             }
+//             )
+//             .then(res => {
+//                 console.log("Axios Reponse from createUser POST", res)
+//                 dispatch({ type: 'POST_NEW_USER', payload: res.data})
+//             })
+//             .catch(err => {console.log('Axios error from POST', err)})
+//     }
+// }
 
 // Actions without the API
 
@@ -115,9 +133,9 @@ export const fetchGoals = () => (dispatch) => {
 
 //Update
 
-export const editGoal = (goals) => {
+export const editGoal = (id) => {
   return (dispatch) => {
-    dispatch({ type: "UPDATE_GOAL", payload: goals });
+    dispatch({ type: "UPDATE_GOAL", payload: id });
   };
 };
 
@@ -125,5 +143,41 @@ export const editGoal = (goals) => {
 export const removeGoal = (id) => {
   return (dispatch) => {
     dispatch({ type: "REMOVE_GOAL", payload: id });
+  };
+};
+
+export const addValue = (newValue) => {
+  return (dispatch) => {
+    dispatch({ type: "ADD_VALUE", payload: newValue });
+  };
+};
+
+export const deleteValue = (id) => {
+  return (dispatch) => {
+    dispatch({ type: "DELETE_VALUE", payload: id });
+  };
+};
+
+export const editValue = (id) => {
+  return (dispatch) => {
+    dispatch({ type: "EDIT_VALUE", payload: id });
+  };
+};
+
+export const submitEditGoal = (id, formState) => {
+  return (dispatch) => {
+    dispatch({
+      type: "UPDATE_GOAL_SUCCESS",
+      payload: { id: id, formState: formState },
+    });
+  };
+};
+
+export const submitEditValue = (id, formState) => {
+  return (dispatch) => {
+    dispatch({
+      type: "SUBMIT_EDIT_VALUE",
+      payload: { id: id, formState: formState },
+    });
   };
 };

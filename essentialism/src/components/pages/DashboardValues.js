@@ -13,6 +13,10 @@ const DashboardValues = () => {
         history.push('/dashboard')
     }
 
+    const chooseChange = () => {
+        history.push('/choose-change')
+    }
+
     return(
         <Spring
         config={{delay: 50, duration: 750}}
@@ -21,6 +25,9 @@ const DashboardValues = () => {
         >
             {props=>(
                 <div style={props}>
+                    <div style={{display: "flex", flexDirection: "row-reverse", marginRight: "4%"}}>
+                    <Button onClick={chooseChange} style={{color: "black", backgroundColor: "white"}} color="primary">Create More Values</Button>
+                    </div>
         <div className="dashboardValues">
             <Spring
         config={{delay: 800, duration: 775}}

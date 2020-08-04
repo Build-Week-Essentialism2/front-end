@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -9,7 +10,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
-import { toggleValue } from "../../state/actions/";
+import { toggleValue, deleteValue, editValue } from "../../state/actions/";
 
 // import { axiosWithAuth } from '../utils/axiosWithAuth'
 
@@ -26,24 +27,26 @@ const Values = (props) => {
 
   // useEffect(() => {
   //     axiosWithAuth()
-  //         .get('/api/friends')
+  //         .get('')
   //         .then(res => setValue(res.data))
   //         .catch(err => console.log(err))
   // }, [])
 
-  // const toggleItem = (dataID) => {
-  //   setData(
-  //     data.map((item) => {
-  //       if (dataID === item.id) {
-  //         return {
-  //           ...item,
-  //           isSelected: !item.isSelected,
-  //         };
-  //       }
-  //       return item;
-  //     })
-  //   );
-  // };
+  const history = useHistory();
+  // let params = useParams();
+  // const editId = params.id;
+
+  const handleDelete = (id) => {
+    console.log(id);
+    props.deleteValue(id);
+  };
+
+  const handleEdit = (id) => {
+    console.log("handleEdit log", id);
+    props.editValue(id);
+    history.push(`/edit-values/${id}`)
+    
+  };
 
   return (
     <div>
@@ -118,6 +121,7 @@ const Values = (props) => {
                         </CardContent>
                       </CardActionArea>
                       <CardActions>
+                      
                         {item.isSelected ? (
                           <Button
                             style={{ color: "white" }}
@@ -132,12 +136,8 @@ const Values = (props) => {
                             Add
                           </Button>
                         )}
-                        {/* <Button size="small" color="primary">
-          Add
-        </Button>
-        <Button size="small" color="primary">
-          Remove
-        </Button> */}
+                        <Button style={{ color: "white" }} onClick={(() => handleEdit(item.id))}>Edit</Button>
+                        <Button style={{ color: "white" }} onClick={(() => handleDelete(item.id))}>Delete</Button>
                       </CardActions>
                     </Card>
                   </Grid>
@@ -215,6 +215,7 @@ const Values = (props) => {
                           <Button size="small" color="primary">
                             Remove
                           </Button>
+                          
                         ) : (
                           <Button
                             onClick={() => props.toggleValue(item.id)}
@@ -225,12 +226,8 @@ const Values = (props) => {
                             Add
                           </Button>
                         )}
-                        {/* <Button size="small" color="primary">
-          Add
-        </Button>
-        <Button size="small" color="primary">
-          Remove
-        </Button> */}
+                       <Button style={{ color: "white" }} onClick={(() => handleEdit(item.id))}>Edit</Button>
+                        <Button style={{ color: "white" }} onClick={(() => handleDelete(item.id))}>Delete</Button>
                       </CardActions>
                     </Card>
                   </Grid>
@@ -251,4 +248,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { toggleValue })(Values);
+export default connect(mapStateToProps, { toggleValue, deleteValue, editValue })(Values);

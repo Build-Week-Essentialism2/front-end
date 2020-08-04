@@ -118,7 +118,10 @@ const Dashboard = (props) => {
         </Button>
       </div>
     </div>
-  );
+            
+  );</Spring>
 };
+
+
 
 export default connect(null, { logoutNavName })(Dashboard);
