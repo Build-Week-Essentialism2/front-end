@@ -3,7 +3,8 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchGoals, removeGoal, editGoal } from "../../state/actions";
 import Goal from "./Goal";
-// import EditGoalForm from "./EditGoalForm";
+import EditGoalForm from "./EditGoalForm";
+
 const Goals = (props) => {
   console.log(props);
   useEffect(() => {
@@ -26,27 +27,16 @@ const Goals = (props) => {
     props.removeGoal(id);
   };
 
-  const handleEdit = (id) => {
-    console.log("handleEdit log", id);
-    props.editGoal(id);
-    // history.push(`/edit-goal`);
-  };
-
   return (
     <>
       <div>
         {props.goals.map((item) => (
-          <div>
-            {/* <div key={item.id}> */}
-            {/* {item.editing ? (
+          <div key={item.id}>
+            {item.editing ? (
               <EditGoalForm item={item} key={item.id} />
-            ) : ( */}
-            <Goal
-              id={item.id}
-              {...item}
-              handleDelete={handleDelete}
-              handleEdit={editGoal}
-            />
+            ) : (
+              <Goal id={item.id} {...item} handleDelete={handleDelete} />
+            )}
           </div>
         ))}
       </div>

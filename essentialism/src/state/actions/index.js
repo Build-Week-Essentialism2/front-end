@@ -122,6 +122,14 @@ export const addGoal = (title, date) => {
   };
 };
 
+// export const addGoal = (title, date, id) => (dispatch) => {
+//   dispatch({ type: ADD_START });
+//   axios
+//     .post("http://localhost:3333/", { title, date, import {  } from 'module'; })
+//     .then((res) => dispatch({ type: ADD_SUCCESS }))
+//     .catch((err) => dispatch({ type: ADD_FAILURE }));
+// };
+
 //Read
 export const fetchGoals = () => (dispatch) => {
   dispatch({ type: INITIAL_FETCH });
@@ -134,11 +142,20 @@ export const fetchGoals = () => (dispatch) => {
 //Update
 
 export const editGoal = (id) => {
+  console.log(id);
   return (dispatch) => {
     dispatch({ type: "UPDATE_GOAL", payload: id });
   };
 };
 
+export const submitEditGoal = (id, formState) => {
+  return (dispatch) => {
+    dispatch({
+      type: "UPDATE_GOAL_SUCCESS",
+      payload: { id: id, formState: formState },
+    });
+  };
+};
 //Delete
 export const removeGoal = (id) => {
   return (dispatch) => {
@@ -161,15 +178,6 @@ export const deleteValue = (id) => {
 export const editValue = (id) => {
   return (dispatch) => {
     dispatch({ type: "EDIT_VALUE", payload: id });
-  };
-};
-
-export const submitEditGoal = (id, formState) => {
-  return (dispatch) => {
-    dispatch({
-      type: "UPDATE_GOAL_SUCCESS",
-      payload: { id: id, formState: formState },
-    });
   };
 };
 

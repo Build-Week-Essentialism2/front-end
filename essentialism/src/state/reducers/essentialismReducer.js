@@ -256,13 +256,6 @@ export function essentialismReducer(state = initialState, action) {
         ][0],
       };
 
-    case UPDATE_GOAL: {
-      return {
-        ...state,
-        editing: false,
-        updated: true,
-      };
-    }
     case UPDATE_GOAL_SUCCESS: {
       return {
         ...state,

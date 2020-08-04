@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-// import { makeStyles } from "@material-ui/core/styles";
+
 import {
   InputGroup,
   InputGroupText,
@@ -8,18 +8,8 @@ import {
   Input,
   Button,
 } from "reactstrap";
-
-// import TextField from "@material-ui/core/TextField";
-// import Card from "@material-ui/core/Card";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
-// import Button from "@material-ui/core/Button";
-// import Typography from "@material-ui/core/Typography";
-// import FormControl from "@material-ui/core/FormControl";
-// import jwt from 'jsonwebtoken';
 import { useHistory, useParams } from "react-router-dom";
 import * as yup from "yup";
-// import { updateNavName } from '../../state/actions'
 import { submitEditGoal } from "../../state/actions";
 
 // import axios from 'axios';
@@ -28,30 +18,6 @@ const formSchema = yup.object().shape({
   title: yup.string().required("Title is a required field"),
   date: yup.string().required("A goal date is a required field"),
 });
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     minWidth: 300,
-//     maxWidth: 300,
-//   },
-//   form: {
-//     "& > *": {
-//       margin: theme.spacing(1),
-//       width: "25ch",
-//     },
-//   },
-//   bullet: {
-//     display: "inline-block",
-//     margin: "0 2px",
-//     transform: "scale(0.8)",
-//   },
-//   title: {
-//     fontSize: 14,
-//   },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// }));
 
 const EditGoalForm = (props) => {
   let history = useHistory();

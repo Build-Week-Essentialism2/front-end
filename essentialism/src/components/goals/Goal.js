@@ -1,5 +1,8 @@
 import React from "react";
 import { ListGroup, ListGroupItem, Button } from "reactstrap";
+import { editGoal } from "../../state/actions";
+import { connect } from "react-redux";
+
 import { useHistory } from "react-router-dom";
 const Goal = (props) => {
   const onDelete = (e) => {
@@ -31,7 +34,7 @@ const Goal = (props) => {
             <h4 style={{ margin: "10px" }}>Goal: {props.title}</h4>
             <p style={{ margin: "10px" }}>Date: {props.date}</p>
             <Button onClick={onDelete}>Delete</Button>{" "}
-            <Button onClick={onEdit}>Edit</Button>
+            <Button onClick={() => onEdit(props.id)}>Edit</Button>
           </ListGroupItem>
         </ListGroup>
 
@@ -50,4 +53,4 @@ const Goal = (props) => {
   );
 };
 
-export default Goal;
+export default connect(() => {}, { editGoal })(Goal);
